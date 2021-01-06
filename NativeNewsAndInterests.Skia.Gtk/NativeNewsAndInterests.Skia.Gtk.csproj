@@ -20,5 +20,8 @@
     <PackageReference Include="Uno.UI.Skia.Gtk" Version="3.4.0" />
     <PackageReference Include="Uno.UI.RemoteControl" Version="3.4.0" Condition="'$(Configuration)'=='Debug'" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NewsAndInterests\NewsAndInterests.csproj" />
+  </ItemGroup>
   <Import Project="..\NativeNewsAndInterests.Shared\NativeNewsAndInterests.Shared.projitems" Label="Shared" />
 </Project>

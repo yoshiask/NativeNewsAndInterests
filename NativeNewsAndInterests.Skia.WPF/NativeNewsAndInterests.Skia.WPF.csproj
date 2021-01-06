@@ -13,5 +13,8 @@
   <ItemGroup>
     <UpToDateCheckInput Include="..\NativeNewsAndInterests.Shared\**\*.xaml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NewsAndInterests\NewsAndInterests.csproj" />
+  </ItemGroup>
   <Import Project="..\NativeNewsAndInterests.Shared\NativeNewsAndInterests.Shared.projitems" Label="Shared" />
 </Project>

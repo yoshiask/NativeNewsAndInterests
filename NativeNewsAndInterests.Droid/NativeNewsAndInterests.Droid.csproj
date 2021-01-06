@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>6545d88b-76cb-4a0c-9844-6aa9533548d3</ProjectGuid>
+    <ProjectGuid>{6545D88B-76CB-4A0C-9844-6AA9533548D3}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -87,6 +87,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Styles.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NewsAndInterests\NewsAndInterests.csproj">
+      <Project>{e14af393-a330-4847-bd1e-685e09051111}</Project>
+      <Name>NewsAndInterests</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\NativeNewsAndInterests.Shared\NativeNewsAndInterests.Shared.projitems" Label="Shared" Condition="Exists('..\NativeNewsAndInterests.Shared\NativeNewsAndInterests.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

@@ -5,9 +5,40 @@
     xmlns:local="using:NativeNewsAndInterests"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:apiModels="using:NewsAndInterests.Models"
+    xmlns:selectors="using:NativeNewsAndInterests.Selectors"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <DataTemplate x:Key="DefaultCardTemplate" x:DataType="apiModels:Card">
+            <StackPanel Spacing="4">
+                <TextBlock Text="{x:Bind Id}"/>
+                <TextBlock Text="{x:Bind Type}"/>
+                <TextBlock Text="{x:Bind Data}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ArticleCardTemplate" x:DataType="apiModels:ArticleCard">
+            <StackPanel Spacing="4">
+                <TextBlock Text="{x:Bind Title}"/>
+                <TextBlock Text="{x:Bind Abstract}" TextWrapping="Wrap"/>
+            </StackPanel>
+        </DataTemplate>
+        
+        <selectors:CardTemplateSelector x:Key="CardTemplateSelector"
+                                        Default="{StaticResource DefaultCardTemplate}"
+                                        Article="{StaticResource ArticleCardTemplate}"/>
+    </Page.Resources>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<TextBlock Text="Hello, world!" Margin="20" FontSize="30" />
+		<!--<TextBlock Text="Hello, world!" Margin="20" FontSize="30" />-->
+
+        <ListView ItemsSource="{x:Bind Cards, Mode=OneWay}"
+                  ItemTemplateSelector="{StaticResource CardTemplateSelector}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Padding" Value="8"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
     </Grid>
 </Page>

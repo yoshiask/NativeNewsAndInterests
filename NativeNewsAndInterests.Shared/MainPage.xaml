@@ -132,6 +132,12 @@
         </DataTemplate>
         <DataTemplate x:Key="WeatherSummaryCardTemplate" x:DataType="apiModels:WeatherSummaryCard">
             <Grid CornerRadius="4" Padding="12" RowSpacing="16">
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundChromeWhiteBrush}"/>
+                    </Style>
+                </Grid.Resources>
+                
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="300,320">
                         <LinearGradientBrush.GradientStops>
@@ -188,11 +194,12 @@
                                 <Image Source="{Binding IconSource}"/>
                                 <TextBlock Text="{x:Bind TemperatureHigh}" Grid.Row="1"
                                            Style="{StaticResource CardTitleStyle}"
-                                           VerticalAlignment="Center" TextAlignment="Center"/>
+                                           VerticalAlignment="Center" TextAlignment="Center"
+                                           Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}"/>
                                 <TextBlock Text="{x:Bind TemperatureLow}" Grid.Row="2"
                                            Style="{StaticResource CardTitleStyle}"
                                            VerticalAlignment="Center" TextAlignment="Center"
-                                           Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                                           Foreground="{ThemeResource SystemControlForegroundChromeHighBrush}"/>
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

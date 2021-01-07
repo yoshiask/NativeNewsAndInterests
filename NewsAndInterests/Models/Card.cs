@@ -24,5 +24,30 @@ namespace NewsAndInterests.Models
         {
             return (item as Newtonsoft.Json.Linq.JObject)?.ToObject<TCardType>();
         }
+
+        public static List<object> ProcessCards(IEnumerable<object> items)
+        {
+            var cards = new List<object>();
+            foreach (var item in items)
+            {
+                var genericItem = item is Card ? (Card)item : Card.ToType<Card>(item);
+                switch (genericItem?.Type)
+                {
+                    case "article":
+                        cards.Add(Card.ToType<ArticleCard>(item));
+                        break;
+
+                    case "group":
+                    case "topStories":
+                        cards.AddRange(ProcessCards(genericItem.SubCards));
+                        break;
+
+                    default:
+                        cards.Add(genericItem);
+                        break;
+                }
+            }
+            return cards;
+        }
     }
 }

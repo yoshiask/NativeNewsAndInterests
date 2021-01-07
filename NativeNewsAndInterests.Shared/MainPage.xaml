@@ -11,17 +11,53 @@
 
     <Page.Resources>
         <DataTemplate x:Key="DefaultCardTemplate" x:DataType="apiModels:Card">
-            <StackPanel Spacing="4">
-                <TextBlock Text="{x:Bind Id}"/>
-                <TextBlock Text="{x:Bind Type}"/>
-                <TextBlock Text="{x:Bind Data}"/>
-            </StackPanel>
+            <Grid Background="{StaticResource SystemControlBackgroundBaseLowBrush}"
+                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="4"
+                  RowSpacing="4" Padding="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <TextBlock Text="{x:Bind CardId}" FontSize="12" Foreground="LightGray"/>
+                    <TextBlock Text="-" FontSize="12" Foreground="LightGray"/>
+                    <TextBlock Text="{x:Bind Id}" FontSize="12" Foreground="LightGray"/>
+                </StackPanel>
+                <TextBlock Text="{x:Bind Type}" FontSize="18" FontWeight="SemiBold" Grid.Row="1"/>
+                <TextBox Text="{x:Bind Data}" TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="2"
+                         FontFamily="JetBrains Mono"/>
+            </Grid>
         </DataTemplate>
         <DataTemplate x:Key="ArticleCardTemplate" x:DataType="apiModels:ArticleCard">
-            <StackPanel Spacing="4">
-                <TextBlock Text="{x:Bind Title}"/>
-                <TextBlock Text="{x:Bind Abstract}" TextWrapping="Wrap"/>
-            </StackPanel>
+            <Grid Background="{StaticResource SystemControlBackgroundBaseLowBrush}"
+                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Image Stretch="UniformToFill">
+                    <Image.Source>
+                        <BitmapImage UriSource="{x:Bind Images[0].Uri}"/>
+                    </Image.Source>
+                </Image>
+
+                <Grid Grid.Row="1" Padding="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{x:Bind Provider.Name}" FontSize="12" Foreground="DarkGray"
+                               VerticalAlignment="Center"/>
+                    <HyperlinkButton NavigateUri="{x:Bind Url}" Grid.Row="1" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}">
+                        <TextBlock Text="{x:Bind Title}" TextWrapping="Wrap" FontSize="18" FontWeight="SemiBold"/>
+                    </HyperlinkButton>
+                    <TextBlock Text="{x:Bind Abstract}" TextWrapping="Wrap" TextTrimming="WordEllipsis" Grid.Row="2"/>
+                </Grid>
+            </Grid>
         </DataTemplate>
         
         <selectors:CardTemplateSelector x:Key="CardTemplateSelector"
@@ -30,15 +66,25 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<!--<TextBlock Text="Hello, world!" Margin="20" FontSize="30" />-->
-
-        <ListView ItemsSource="{x:Bind Cards, Mode=OneWay}"
-                  ItemTemplateSelector="{StaticResource CardTemplateSelector}">
+        <ListView ItemsSource="{x:Bind Cards, Mode=OneWay}" SelectionMode="None"
+                  ItemTemplateSelector="{StaticResource CardTemplateSelector}"
+                  HorizontalContentAlignment="Center">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Padding" Value="8"/>
+                    <Setter Property="Margin" Value="4"/>
+                    <Setter Property="Width" Value="370"/>
+                    <Setter Property="Height" Value="380"/>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
             </ListView.ItemContainerStyle>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="2"
+                                   HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
         </ListView>
     </Grid>
 </Page>

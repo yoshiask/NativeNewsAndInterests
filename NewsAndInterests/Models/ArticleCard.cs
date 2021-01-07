@@ -57,6 +57,10 @@ namespace NewsAndInterests.Models
 
         [JsonProperty("quality")]
         public int Quality { get; set; }
+
+
+        [JsonIgnore()]
+        public Uri Uri => new Uri(Url ?? string.Empty);
     }
 
     public class Provider

@@ -10,6 +10,21 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <Style TargetType="TextBlock" x:Key="CardSubtitleStyle">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Foreground" Value="{ThemeResource SystemControlPageTextBaseHighBrush}"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="CardTitleStyle">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="CardBodyStyle">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextTrimming" Value="WordEllipsis"/>
+        </Style>
+        
         <DataTemplate x:Key="DefaultCardTemplate" x:DataType="apiModels:Card">
             <Grid Background="{StaticResource SystemControlBackgroundBaseLowBrush}"
                   VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="4"
@@ -21,11 +36,11 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal" Spacing="4">
-                    <TextBlock Text="{x:Bind CardId}" FontSize="12" Foreground="LightGray"/>
-                    <TextBlock Text="-" FontSize="12" Foreground="LightGray"/>
-                    <TextBlock Text="{x:Bind Id}" FontSize="12" Foreground="LightGray"/>
+                    <TextBlock Text="{x:Bind CardId}" Style="{StaticResource CardSubtitleStyle}"/>
+                    <TextBlock Text="-" Style="{StaticResource CardSubtitleStyle}"/>
+                    <TextBlock Text="{x:Bind Id}" Style="{StaticResource CardSubtitleStyle}"/>
                 </StackPanel>
-                <TextBlock Text="{x:Bind Type}" FontSize="18" FontWeight="SemiBold" Grid.Row="1"/>
+                <TextBlock Text="{x:Bind Type}" Style="{StaticResource CardTitleStyle}" Grid.Row="1"/>
                 <TextBox Text="{x:Bind Data}" TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="2"
                          FontFamily="JetBrains Mono"/>
             </Grid>
@@ -50,12 +65,11 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{x:Bind Provider.Name}" FontSize="12" Foreground="DarkGray"
-                               VerticalAlignment="Center"/>
+                    <TextBlock Text="{x:Bind Provider.Name}" Style="{StaticResource CardSubtitleStyle}"/>
                     <HyperlinkButton NavigateUri="{x:Bind Url}" Grid.Row="1" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}">
-                        <TextBlock Text="{x:Bind Title}" TextWrapping="Wrap" FontSize="18" FontWeight="SemiBold"/>
+                        <TextBlock Text="{x:Bind Title}" Style="{StaticResource CardTitleStyle}"/>
                     </HyperlinkButton>
-                    <TextBlock Text="{x:Bind Abstract}" TextWrapping="Wrap" TextTrimming="WordEllipsis" Grid.Row="2"/>
+                    <TextBlock Text="{x:Bind Abstract}" Style="{StaticResource CardBodyStyle}" Grid.Row="2"/>
                 </Grid>
             </Grid>
         </DataTemplate>
@@ -73,8 +87,8 @@
                 <Style TargetType="ListViewItem">
                     <Setter Property="Padding" Value="8"/>
                     <Setter Property="Margin" Value="4"/>
-                    <Setter Property="Width" Value="370"/>
-                    <Setter Property="Height" Value="380"/>
+                    <Setter Property="Width" Value="300"/>
+                    <Setter Property="Height" Value="320"/>
                     <Setter Property="VerticalContentAlignment" Value="Stretch"/>
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>

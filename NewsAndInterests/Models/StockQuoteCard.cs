@@ -87,7 +87,7 @@ namespace NewsAndInterests.Models
         [JsonProperty("unchanged")]
         public bool Unchanged { get; set; }
 
-        [JsonProperty("formattedUpdateTime")]
+        [JsonProperty("formatedUpdateTime")]
         public string FormattedUpdateTime { get; set; }
     }
 }

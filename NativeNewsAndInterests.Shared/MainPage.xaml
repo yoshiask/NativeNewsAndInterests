@@ -213,9 +213,89 @@
     </Page.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="TitleBarRow" Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition x:Name="CaptionButtonColumn" Width="0"/>
+            </Grid.ColumnDefinitions>
+            <Border x:Name="TitleBarGrab" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    Background="Transparent"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="2" HorizontalAlignment="Right">
+                <Button Style="{ThemeResource ButtonRevealStyle}" Background="Transparent" BorderThickness="1"
+                        VerticalAlignment="Stretch" Width="40">
+                    <FontIcon Glyph="&#xE72C;" FontSize="12"/>
+                </Button>
+                <Button Style="{ThemeResource ButtonRevealStyle}" Background="Transparent" BorderThickness="1"
+                    VerticalAlignment="Stretch" Width="40">
+                    <SymbolIcon Symbol="More"/>
+                    <Button.Flyout>
+                        <Flyout>
+                            <StackPanel Spacing="4">
+                                <StackPanel.Resources>
+                                    <Style TargetType="Button" BasedOn="{StaticResource ButtonRevealStyle}">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                        <Setter Property="Margin" Value="-10,-1"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <TextBlock Text="No connected account" FontWeight="SemiBold"/>
+                                <HyperlinkButton Content="Sign in with a Microsoft account" FontWeight="SemiBold"/>
+                                <Rectangle Height="1" Fill="{ThemeResource AppBarSeparatorForegroundThemeBrush}"/>
+                                <Button>
+                                    <StackPanel Spacing="8" Orientation="Horizontal" Padding="4">
+                                        <FontIcon Glyph="&#xE775;" FontSize="16"/>
+                                        <TextBlock Text="Language and content"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button>
+                                    <StackPanel Spacing="8" Orientation="Horizontal" Padding="4" HorizontalAlignment="Left">
+                                        <FontIcon Glyph="&#xE72E;" FontSize="16"/>
+                                        <TextBlock Text="Privacy dashboard"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button >
+                                    <StackPanel Spacing="8" Orientation="Horizontal" Padding="4" HorizontalAlignment="Left">
+                                        <FontIcon Glyph="&#xEA80;" FontSize="16"/>
+                                        <TextBlock Text="Tips and tricks"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button>
+                                    <StackPanel Spacing="8" Orientation="Horizontal" Padding="4" HorizontalAlignment="Left">
+                                        <FontIcon Glyph="&#xED15;" FontSize="16"/>
+                                        <TextBlock Text="Feedback"/>
+                                    </StackPanel>
+                                </Button>
+                                <Rectangle Height="1" Fill="{ThemeResource AppBarSeparatorForegroundThemeBrush}"/>
+                                <StackPanel Orientation="Horizontal" Spacing="4">
+                                    <HyperlinkButton Content="Privacy" FontSize="12"
+                                                 Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                                    <Border VerticalAlignment="Center">
+                                        <TextBlock Text="-" FontSize="12"
+                                               Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                                    </Border>
+                                    <HyperlinkButton Content="Terms of use" FontSize="12"
+                                                 Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                                </StackPanel>
+                                <TextBlock Text="powered by Microsoft News" FontSize="12"
+                                                 Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+            </StackPanel>
+        </Grid>
+
         <ListView ItemsSource="{x:Bind Cards, Mode=OneWay}" SelectionMode="None"
                   ItemTemplateSelector="{StaticResource CardTemplateSelector}"
-                  HorizontalContentAlignment="Center">
+                  HorizontalContentAlignment="Center" Grid.Row="1">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Padding" Value="8"/>

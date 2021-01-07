@@ -30,11 +30,15 @@ namespace NewsAndInterests.Models
             var cards = new List<object>();
             foreach (var item in items)
             {
-                var genericItem = item is Card ? (Card)item : Card.ToType<Card>(item);
+                var genericItem = item is Card card ? card : ToType<Card>(item);
                 switch (genericItem?.Type)
                 {
                     case "article":
-                        cards.Add(Card.ToType<ArticleCard>(item));
+                        cards.Add(ToType<ArticleCard>(item));
+                        break;
+
+                    case "StockQuote":
+                        cards.Add(ToType<StockQuoteCard>(item));
                         break;
 
                     case "group":

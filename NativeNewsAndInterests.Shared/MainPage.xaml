@@ -10,9 +10,10 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <Style TargetType="TextBlock" x:Key="CardSubtitleStyle">
-            <Setter Property="FontSize" Value="10"/>
-            <Setter Property="Foreground" Value="{ThemeResource SystemControlPageTextBaseHighBrush}"/>
+        <Style TargetType="TextBlock" x:Key="CardHeaderStyle">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
         </Style>
         <Style TargetType="TextBlock" x:Key="CardTitleStyle">
             <Setter Property="FontSize" Value="16"/>
@@ -23,6 +24,10 @@
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="TextTrimming" Value="WordEllipsis"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="CardSubtitleStyle">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Foreground" Value="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
         </Style>
         
         <DataTemplate x:Key="DefaultCardTemplate" x:DataType="apiModels:Card">
@@ -46,8 +51,7 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="ArticleCardTemplate" x:DataType="apiModels:ArticleCard">
-            <Grid Background="{StaticResource SystemControlBackgroundBaseLowBrush}"
-                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="4">
+            <Grid Background="{StaticResource SystemControlBackgroundBaseLowBrush}" CornerRadius="4">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -73,10 +77,63 @@
                 </Grid>
             </Grid>
         </DataTemplate>
+        <DataTemplate x:Key="StockQuoteCardTemplate" x:DataType="apiModels:StockQuoteCard">
+            <Grid Background="{StaticResource SystemControlBackgroundBaseLowBrush}"
+                  CornerRadius="4" Padding="12" RowSpacing="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="MONEY | MARKET" Style="{StaticResource CardHeaderStyle}"/>
+                <!--<Button HorizontalAlignment="Right" Background="Transparent" Height="20" Width="40">
+                    <FontIcon Glyph="&#xE712;" FontSize="12"/>
+                    <Button.Flyout>
+                        <MenuFlyout Placement="BottomEdgeAlignedRight">
+                            <MenuFlyoutItem Text="Hide card"/>
+                            <MenuFlyoutItem Text="About this data"/>
+                            <MenuFlyoutItem Text="More settings"/>
+                        </MenuFlyout>
+                    </Button.Flyout>
+                </Button>-->
+
+                <ItemsControl ItemsSource="{x:Bind StockQuote.QuoteItems, Mode=OneWay}" Grid.Row="1">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="apiModels:QuoteItem">
+                            <Grid ColumnSpacing="8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{x:Bind DisplayName}" Style="{StaticResource CardTitleStyle}"/>
+                                <TextBlock Text="{x:Bind Price}" FontSize="16" Grid.Column="1"
+                                           Style="{StaticResource CardBodyStyle}"/>
+                                <Border Grid.Column="2" Background="Green" CornerRadius="2" Padding="4">
+                                    <TextBlock Text="{x:Bind ChangePercent}" TextAlignment="Right" FontSize="12"/>
+                                </Border>
+                                <TextBlock Text="{x:Bind TimeLastUpdated.LocalDateTime}" Style="{StaticResource CardSubtitleStyle}"
+                                           HorizontalAlignment="Right" Grid.Row="1" Grid.ColumnSpan="3"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Spacing="12"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </Grid>
+        </DataTemplate>
         
         <selectors:CardTemplateSelector x:Key="CardTemplateSelector"
                                         Default="{StaticResource DefaultCardTemplate}"
-                                        Article="{StaticResource ArticleCardTemplate}"/>
+                                        Article="{StaticResource ArticleCardTemplate}"
+                                        StockQuote="{StaticResource StockQuoteCardTemplate}"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

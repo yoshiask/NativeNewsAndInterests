@@ -8,13 +8,17 @@ namespace NativeNewsAndInterests.Selectors
     {
         public DataTemplate Default { get; set; }
         public DataTemplate Article { get; set; }
+        public DataTemplate StockQuote { get; set; }
 
         protected override DataTemplate SelectTemplateCore(object item)
         {
             switch (item)
             {
-                case ArticleCard article:
+                case ArticleCard _:
                     return Article;
+
+                case StockQuoteCard _:
+                    return StockQuote;
 
                 default:
                 case Card _:

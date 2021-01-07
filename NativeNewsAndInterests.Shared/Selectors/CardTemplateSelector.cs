@@ -9,6 +9,7 @@ namespace NativeNewsAndInterests.Selectors
         public DataTemplate Default { get; set; }
         public DataTemplate Article { get; set; }
         public DataTemplate StockQuote { get; set; }
+        public DataTemplate WeatherSummary { get; set; }
 
         protected override DataTemplate SelectTemplateCore(object item)
         {
@@ -19,6 +20,9 @@ namespace NativeNewsAndInterests.Selectors
 
                 case StockQuoteCard _:
                     return StockQuote;
+
+                case WeatherSummaryCard _:
+                    return WeatherSummary;
 
                 default:
                 case Card _:

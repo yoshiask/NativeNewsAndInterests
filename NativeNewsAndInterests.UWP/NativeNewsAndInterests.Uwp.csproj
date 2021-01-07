@@ -150,6 +150,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\NativeNewsAndInterests.Shared\NativeNewsAndInterests.Shared.projitems" Label="Shared" Condition="Exists('..\NativeNewsAndInterests.Shared\NativeNewsAndInterests.Shared.projitems')" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

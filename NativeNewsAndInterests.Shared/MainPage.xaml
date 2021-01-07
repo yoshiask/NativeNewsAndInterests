@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:apiModels="using:NewsAndInterests.Models"
     xmlns:selectors="using:NativeNewsAndInterests.Selectors"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}">
 
     <Page.Resources>
         <Style TargetType="TextBlock" x:Key="CardHeaderStyle">
@@ -129,14 +130,89 @@
                 </ItemsControl>
             </Grid>
         </DataTemplate>
+        <DataTemplate x:Key="WeatherSummaryCardTemplate" x:DataType="apiModels:WeatherSummaryCard">
+            <Grid CornerRadius="4" Padding="12" RowSpacing="16">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="300,320">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Color="#1B7BC1"/>
+                            <GradientStop Color="#1360A7"/>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding WeatherSummary.UserProfile.Location.City}"/>
+                    <TextBlock Text="," Margin="0,0,2,0"/>
+                    <TextBlock Text="{Binding WeatherSummary.UserProfile.Location.State}"/>
+                </StackPanel>
+
+                <Grid DataContext="{x:Bind GetFirstCurrentReport()}"
+                      Grid.Row="1" ColumnSpacing="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Image Source="{Binding IconSource}" MaxWidth="50" Grid.RowSpan="2"/>
+                    <Border VerticalAlignment="Center" Grid.Column="1" Grid.RowSpan="2">
+                        <TextBlock Text="{Binding Temperature}" FontWeight="SemiBold"
+                                   FontSize="44" Margin="0,-8,0,0"/>
+                    </Border>
+                    <TextBlock Text="{Binding TemperatureUnit}" Grid.Column="2"/>
+                    <TextBlock Text="{Binding Caption}" TextAlignment="Right" Grid.Column="4"/>
+                    <TextBlock Text="1%" TextAlignment="Right" Grid.Column="4" Grid.Row="1"/>
+                </Grid>
+
+                <ItemsControl ItemsSource="{x:Bind GetFirstForecastReports(), Mode=OneWay}" Grid.Row="2">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="apiModels:WeatherReportForecast">
+                            <Grid MaxWidth="58" CornerRadius="4" Padding="8" Background="#22000000">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding IconSource}"/>
+                                <TextBlock Text="{x:Bind TemperatureHigh}" Grid.Row="1"
+                                           Style="{StaticResource CardTitleStyle}"
+                                           VerticalAlignment="Center" TextAlignment="Center"/>
+                                <TextBlock Text="{x:Bind TemperatureLow}" Grid.Row="2"
+                                           Style="{StaticResource CardTitleStyle}"
+                                           VerticalAlignment="Center" TextAlignment="Center"
+                                           Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="8"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </Grid>
+        </DataTemplate>
         
         <selectors:CardTemplateSelector x:Key="CardTemplateSelector"
                                         Default="{StaticResource DefaultCardTemplate}"
                                         Article="{StaticResource ArticleCardTemplate}"
-                                        StockQuote="{StaticResource StockQuoteCardTemplate}"/>
+                                        StockQuote="{StaticResource StockQuoteCardTemplate}"
+                                        WeatherSummary="{StaticResource WeatherSummaryCardTemplate}"/>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <ListView ItemsSource="{x:Bind Cards, Mode=OneWay}" SelectionMode="None"
                   ItemTemplateSelector="{StaticResource CardTemplateSelector}"
                   HorizontalContentAlignment="Center">

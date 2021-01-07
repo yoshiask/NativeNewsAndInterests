@@ -41,6 +41,10 @@ namespace NewsAndInterests.Models
                         cards.Add(ToType<StockQuoteCard>(item));
                         break;
 
+                    case "WeatherSummary":
+                        cards.Add(ToType<WeatherSummaryCard>(item));
+                        break;
+
                     case "group":
                     case "topStories":
                         cards.AddRange(ProcessCards(genericItem.SubCards));

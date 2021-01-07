@@ -35,4 +35,31 @@
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\BlowingHailV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\BlowingSnowV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\ClearNightV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\CloudyV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\FogV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\FreezingRainV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\HailDayV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\HailNightV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\HazeSmokeNightV2_106.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\HazySmokeV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\HeavySnowV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\LightRainV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\LightSnowV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\ModerateRainV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\PartlyCloudyDayV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\PartlyCloudyNightV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\RainShowersDayV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\RainShowersNightV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\RainSnowShowersNightV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\RainSnowV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\SnowShowersDayV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\SnowShowersNightV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\SunnyDayV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\ThunderstormsV2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WeatherIcons\WindyV2.png" />
+  </ItemGroup>
 </Project>

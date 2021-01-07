@@ -10,7 +10,9 @@ namespace NewsAndInterests
 {
     public static class Api
     {
-        public const string MSN_ASSETS_BASE_URL = "https://assets.msn.com/";
+        public const string MSN_ASSETS_BASE_URL = "https://assets.msn.com";
+        public const string MSN_ASSETS_WINSHELL_LATEST = MSN_ASSETS_BASE_URL + "/bundles/v1/windowsShell/latest";
+
         private const string MSFT_API_KEY = "pWw5OmQehOA0XNfgcgrTrwEJZJJJzE83ovtTQx6JRG";
         private const string MSFT_USER = "m-30F2319692C16C9719E53E21933D6DD4";
 

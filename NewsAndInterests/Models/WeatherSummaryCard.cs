@@ -144,7 +144,7 @@ namespace NewsAndInterests.Models
     public class WeatherResult
     {
         [JsonProperty("alerts")]
-        public List<string> Alerts { get; set; }
+        public List<WeatherAlert> Alerts { get; set; }
 
         [JsonProperty("current")]
         public WeatherReportCurrent Current { get; set; }
@@ -329,5 +329,41 @@ namespace NewsAndInterests.Models
 
         [JsonProperty("url")]
         public string Url { get; set; }
+    }
+
+    public class WeatherAlert
+    {
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
+        [JsonProperty("event")]
+        public string Event { get; set; }
+
+        [JsonProperty("abbreviation")]
+        public string[] Abbreviation { get; set; }
+
+        [JsonProperty("severity")]
+        public string Severity { get; set; }
+
+        [JsonProperty("significance")]
+        public string Significance { get; set; }
+
+        [JsonProperty("credit")]
+        public string Credit { get; set; }
+
+        [JsonProperty("created")]
+        public DateTimeOffset Created { get; set; }
+
+        [JsonProperty("start")]
+        public DateTimeOffset Start { get; set; }
+
+        [JsonProperty("end")]
+        public DateTimeOffset End { get; set; }
+
+        [JsonProperty("class")]
+        public string Class { get; set; }
     }
 }

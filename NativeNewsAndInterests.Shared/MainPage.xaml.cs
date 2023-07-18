@@ -1,6 +1,7 @@
 using NewsAndInterests;
 using NewsAndInterests.Models;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -54,7 +55,7 @@ namespace NativeNewsAndInterests
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             var feed = await Api.GetFeed();
-            foreach (var card in Card.ProcessCards(feed.Cards))
+            foreach (var card in Card.ProcessCards(feed.Regions.River.SubSections.SelectMany(s => s.Cards)))
             {
                 Cards.Add(card);
             }

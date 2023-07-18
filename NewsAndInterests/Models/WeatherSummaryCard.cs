@@ -200,7 +200,7 @@ namespace NewsAndInterests.Models
         {
             set
             {
-                DaySummaries = value["summaries"].ToObject<List<string>>();
+                DaySummaries = value["summaries"]?.ToObject<List<string>>();
             }
         }
 
@@ -209,7 +209,7 @@ namespace NewsAndInterests.Models
         {
             set
             {
-                NightSummaries = value["summaries"].ToObject<List<string>>();
+                NightSummaries = value["summaries"]?.ToObject<List<string>>();
             }
         }
 

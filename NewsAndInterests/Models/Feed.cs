@@ -36,7 +36,7 @@ namespace NewsAndInterests.Models
         [JsonProperty("template")]
         public string Template { get; set; }
 
-        [JsonProperty("cards")]
-        public List<Newtonsoft.Json.Linq.JObject> Cards { get; set; }
+        [JsonProperty("regions")]
+        public Regions Regions { get; set; }
     }
 }

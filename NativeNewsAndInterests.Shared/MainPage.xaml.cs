@@ -53,7 +53,8 @@ namespace NativeNewsAndInterests
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            foreach (var card in Card.ProcessCards((await Api.GetFeed()).Cards))
+            var feed = await Api.GetFeed();
+            foreach (var card in Card.ProcessCards(feed.Cards))
             {
                 Cards.Add(card);
             }
